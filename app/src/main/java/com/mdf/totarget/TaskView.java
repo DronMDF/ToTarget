@@ -15,9 +15,9 @@ import android.view.View;
  * TODO: document your custom view class.
  */
 public class TaskView extends View {
-    private String mExampleString; // TODO: use a default from R.string...
-    private int mExampleColor = Color.RED; // TODO: use a default from R.color...
-    private float mExampleDimension = 0; // TODO: use a default from R.dimen...
+    private String mExampleString;
+    private int mExampleColor = Color.RED;
+    private float mExampleDimension = 0;
     private Drawable mExampleDrawable;
 
     private TextPaint mTextPaint;
@@ -44,20 +44,16 @@ public class TaskView extends View {
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.TaskView, defStyle, 0);
 
-        mExampleString = a.getString(
-                R.styleable.TaskView_exampleString);
-        mExampleColor = a.getColor(
-                R.styleable.TaskView_exampleColor,
-                mExampleColor);
+        mExampleString = a.getString(R.styleable.TaskView_exampleString);
+        mExampleColor = a.getColor(R.styleable.TaskView_exampleColor, mExampleColor);
+
         // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
         // values that should fall on pixel boundaries.
-        mExampleDimension = a.getDimension(
-                R.styleable.TaskView_exampleDimension,
+        mExampleDimension = a.getDimension(R.styleable.TaskView_exampleDimension,
                 mExampleDimension);
 
         if (a.hasValue(R.styleable.TaskView_exampleDrawable)) {
-            mExampleDrawable = a.getDrawable(
-                    R.styleable.TaskView_exampleDrawable);
+            mExampleDrawable = a.getDrawable(R.styleable.TaskView_exampleDrawable);
             mExampleDrawable.setCallback(this);
         }
 
