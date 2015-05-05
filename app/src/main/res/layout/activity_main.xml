@@ -18,7 +18,7 @@
         custom:exampleDimension="@dimen/task_dimension"
         custom:exampleColor="@color/primary_material_dark"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="100dp"/>
 
     <view
         android:id="@+id/task2"
@@ -27,7 +27,7 @@
         custom:exampleDimension="@dimen/task_dimension"
         custom:exampleColor="@color/primary_material_dark"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="100dp"/>
 
     <view
         android:id="@+id/task3"
@@ -36,7 +36,7 @@
         custom:exampleDimension="@dimen/task_dimension"
         custom:exampleColor="@color/primary_material_dark"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="100dp"/>
 
     <!-- В среднем поле отображаем количество баллов -->
 

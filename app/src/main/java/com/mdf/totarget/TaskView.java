@@ -11,9 +11,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
-/**
- * TODO: document your custom view class.
- */
 public class TaskView extends View {
     private String mExampleString;
     private int mExampleColor = Color.RED;
