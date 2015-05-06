@@ -2,11 +2,14 @@ package com.mdf.totarget;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 
@@ -17,12 +20,39 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout tasks = (LinearLayout)findViewById(R.id.tasks);
+        final LinearLayout tasks = (LinearLayout) findViewById(R.id.tasks);
         LayoutInflater inflater = getLayoutInflater();
         for (int i = 0; i < 3; i++) {
             View item = inflater.inflate(R.layout.task_view, tasks, false);
-            EditText name = (EditText)item.findViewById(R.id.name);
+            final ImageButton done = (ImageButton) item.findViewById(R.id.done);
+            final EditText name = (EditText) item.findViewById(R.id.name);
+
+            done.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO: Засчитать баллы
+                    name.setText(R.string.task_default);
+                    name.setEnabled(false);
+                    done.setEnabled(false);
+                }
+            });
+            name.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    name.setEnabled(true);
+                    done.setEnabled(true);
+                }
+            });
             name.setText(R.string.task_default);
+
             tasks.addView(item);
         }
     }
