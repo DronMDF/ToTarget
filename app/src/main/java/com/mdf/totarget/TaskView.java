@@ -1,23 +1,23 @@
 package com.mdf.totarget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.view.View;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.EditText;
 
 
-public class TaskView extends View {
+public class TaskView extends ViewGroup {
     private String mExampleString;
     private int mExampleColor = Color.RED;
     private float mExampleDimension = 0;
     private Drawable mExampleDrawable;
 
-    private TextPaint mTextPaint;
+    private EditText text;
     private float mTextWidth;
     private float mTextHeight;
 
@@ -34,6 +34,10 @@ public class TaskView extends View {
     public TaskView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs, defStyle);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
     }
 
     private void init(AttributeSet attrs, int defStyle) {
@@ -54,52 +58,28 @@ public class TaskView extends View {
             mExampleDrawable.setCallback(this);
         }
 
+        LayoutInflater inflater = getLayoutInflater();
+        inflater.inflate(R.layout.task_view, this, true);
+
+        text = (EditText)findViewById(R.id.name);
+        text.setText(mExampleString);
+
         a.recycle();
 
-        // Set up a default TextPaint object
-        mTextPaint = new TextPaint();
-        mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setTextAlign(Paint.Align.LEFT);
-
-        // Update TextPaint and text measurements from attributes
         invalidateTextPaintAndMeasurements();
     }
 
-    private void invalidateTextPaintAndMeasurements() {
-        mTextPaint.setTextSize(mExampleDimension);
-        mTextPaint.setColor(mExampleColor);
-        mTextWidth = mTextPaint.measureText(mExampleString);
-
-        Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
-        mTextHeight = fontMetrics.bottom;
+    private LayoutInflater getLayoutInflater() {
+        if (getContext() instanceof Activity) {
+            return ((Activity)getContext()).getLayoutInflater();
+        }
+        return LayoutInflater.from(getContext());
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-        // TODO: consider storing these as member variables to reduce
-        // allocations per draw cycle.
-        int paddingLeft = getPaddingLeft();
-        int paddingTop = getPaddingTop();
-        int paddingRight = getPaddingRight();
-        int paddingBottom = getPaddingBottom();
-
-        int contentWidth = getWidth() - paddingLeft - paddingRight;
-        int contentHeight = getHeight() - paddingTop - paddingBottom;
-
-        // Draw the text.
-        canvas.drawText(mExampleString,
-                paddingLeft + (contentWidth - mTextWidth) / 2,
-                paddingTop + (contentHeight + mTextHeight) / 2,
-                mTextPaint);
-
-        // Draw the example drawable on top of the text.
-        if (mExampleDrawable != null) {
-            mExampleDrawable.setBounds(paddingLeft, paddingTop,
-                    paddingLeft + contentWidth, paddingTop + contentHeight);
-            mExampleDrawable.draw(canvas);
-        }
+    /// Update TextPaint and text measurements from attributes
+    private void invalidateTextPaintAndMeasurements() {
+        text.setTextSize(mExampleDimension);
+        text.setTextColor(mExampleColor);
     }
 
     /**

@@ -11,27 +11,24 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <view
+    <com.mdf.totarget.TaskView
         android:id="@+id/task1"
-        class="com.mdf.totarget.TaskView"
         custom:exampleString="@string/task_default"
         custom:exampleDimension="@dimen/task_dimension"
         custom:exampleColor="@color/primary_material_dark"
         android:layout_width="fill_parent"
         android:layout_height="100dp"/>
 
-    <view
+    <com.mdf.totarget.TaskView
         android:id="@+id/task2"
-        class="com.mdf.totarget.TaskView"
         custom:exampleString="@string/task_default"
         custom:exampleDimension="@dimen/task_dimension"
         custom:exampleColor="@color/primary_material_dark"
         android:layout_width="fill_parent"
         android:layout_height="100dp"/>
 
-    <view
+    <com.mdf.totarget.TaskView
         android:id="@+id/task3"
-        class="com.mdf.totarget.TaskView"
         custom:exampleString="@string/task_default"
         custom:exampleDimension="@dimen/task_dimension"
         custom:exampleColor="@color/primary_material_dark"
