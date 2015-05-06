@@ -11,29 +11,12 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <com.mdf.totarget.TaskView
-        android:id="@+id/task1"
-        custom:exampleString="@string/task_default"
-        custom:exampleDimension="@dimen/task_dimension"
-        custom:exampleColor="@color/primary_material_dark"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"/>
-
-    <com.mdf.totarget.TaskView
-        android:id="@+id/task2"
-        custom:exampleString="@string/task_default"
-        custom:exampleDimension="@dimen/task_dimension"
-        custom:exampleColor="@color/primary_material_dark"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"/>
-
-    <com.mdf.totarget.TaskView
-        android:id="@+id/task3"
-        custom:exampleString="@string/task_default"
-        custom:exampleDimension="@dimen/task_dimension"
-        custom:exampleColor="@color/primary_material_dark"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"/>
+    <LinearLayout
+        android:id="@+id/tasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    </LinearLayout>
 
     <!-- В среднем поле отображаем количество баллов -->
 
