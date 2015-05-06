@@ -17,13 +17,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout layout = (LinearLayout)findViewById(R.id.tasks);
+        LinearLayout tasks = (LinearLayout)findViewById(R.id.tasks);
         LayoutInflater inflater = getLayoutInflater();
         for (int i = 0; i < 3; i++) {
-            View item = inflater.inflate(R.layout.task_view, layout, false);
+            View item = inflater.inflate(R.layout.task_view, tasks, false);
             EditText name = (EditText)item.findViewById(R.id.name);
             name.setText(R.string.task_default);
-            layout.addView(item);
+            tasks.addView(item);
         }
     }
 
