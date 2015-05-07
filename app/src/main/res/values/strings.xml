@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ToTarget</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="task_text_hint">Write task here</string>
