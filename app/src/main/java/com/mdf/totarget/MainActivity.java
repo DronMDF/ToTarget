@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     // TODO: Засчитать баллы
-                    task_text.setText("");
+                    task_text.clearFocus();
                     task_button.setEnabled(false);
                 }
             });

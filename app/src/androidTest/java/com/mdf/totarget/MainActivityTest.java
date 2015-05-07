@@ -3,6 +3,7 @@ package com.mdf.totarget;
 import android.content.Intent;
 import android.test.ActivityUnitTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +23,18 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity> {
         activity = (MainActivity) getActivity();
     }
 
+    private void setTaskText(final TextView task_text, String text) {
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                task_text.requestFocus();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
+        getInstrumentation().sendStringSync(text);
+        getInstrumentation().waitForIdleSync();
+    }
+
     @MediumTest
     public void testUserShouldWriteTaskToEnableIt() {
         // Given
@@ -29,12 +42,7 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity> {
         View task = tasks.getChildAt(0);
         // When
         final TextView text = (TextView) task.findViewById(R.id.name);
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                text.setText("Test");
-            }
-        });
+        setTaskText(text, "Test");
         // Then
         View done = task.findViewById(R.id.done);
         assertTrue(done.isEnabled());
@@ -45,18 +53,17 @@ public class MainActivityTest extends ActivityUnitTestCase<MainActivity> {
         // Given
         LinearLayout tasks = (LinearLayout) activity.findViewById(R.id.tasks);
         View task = tasks.getChildAt(1);
-        final TextView text = (TextView) task.findViewById(R.id.name);
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                text.setText("Test");
-            }
-        });
-        View done = tasks.findViewById(R.id.done);
+
+        final TextView task_text = (TextView) task.findViewById(R.id.name);
+        setTaskText(task_text, "Test");
+
+        View task_button = tasks.findViewById(R.id.done);
         // When
-        done.performClick();
+        task_button.performClick();
+        getInstrumentation().waitForIdleSync();
         // Then
-        assertFalse(done.isEnabled());
+        assertFalse(task_button.isEnabled());
+        assertTrue(TextUtils.isEmpty(task_text.getText().toString()));
     }
 
 }
