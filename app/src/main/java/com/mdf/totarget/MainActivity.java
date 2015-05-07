@@ -24,19 +24,18 @@ public class MainActivity extends Activity {
         LayoutInflater inflater = getLayoutInflater();
         for (int i = 0; i < 3; i++) {
             View item = inflater.inflate(R.layout.task_view, tasks, false);
-            final ImageButton done = (ImageButton) item.findViewById(R.id.done);
-            final EditText name = (EditText) item.findViewById(R.id.name);
+            final ImageButton task_button = (ImageButton) item.findViewById(R.id.done);
+            final EditText task_text = (EditText) item.findViewById(R.id.name);
 
-            done.setOnClickListener(new View.OnClickListener() {
+            task_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // TODO: Засчитать баллы
-                    name.setText(R.string.task_default);
-                    name.setEnabled(false);
-                    done.setEnabled(false);
+                    task_text.setText("");
+                    task_button.setEnabled(false);
                 }
             });
-            name.addTextChangedListener(new TextWatcher() {
+            task_text.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 }
@@ -47,11 +46,9 @@ public class MainActivity extends Activity {
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    name.setEnabled(true);
-                    done.setEnabled(true);
+                    task_button.setEnabled(true);
                 }
             });
-            name.setText(R.string.task_default);
 
             tasks.addView(item);
         }
