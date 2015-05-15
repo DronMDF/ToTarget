@@ -16,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-
 public class MainActivity extends Activity {
 
     Integer[] task_values = {0, 1, 2, 3, 5, 8, 13, 20, 40, 100};
@@ -45,6 +44,7 @@ public class MainActivity extends Activity {
                 public void afterTextChanged(Editable s) {
                     if (task_spinner.getSelectedItemId() != 0) {
                         task_button.setEnabled(true);
+                        task_button.setImageResource(R.drawable.btn_check_on);
                     }
                 }
             });
@@ -58,11 +58,13 @@ public class MainActivity extends Activity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if (!TextUtils.isEmpty(task_text.getText().toString())) {
                         task_button.setEnabled(true);
+                        task_button.setImageResource(R.drawable.btn_check_on);
                     }
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                    task_button.setEnabled(false);
+                    task_button.setImageResource(R.drawable.btn_check_off_disable);
                 }
             });
             task_button.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +74,7 @@ public class MainActivity extends Activity {
                     task_text.clearFocus();
                     task_spinner.setSelection(0);
                     task_button.setEnabled(false);
+                    task_button.setImageResource(R.drawable.btn_check_off_disable);
                 }
             });
 
