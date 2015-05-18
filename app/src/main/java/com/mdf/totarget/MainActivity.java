@@ -39,16 +39,19 @@ public class MainActivity extends Activity {
                 }
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (TextUtils.isEmpty(s.toString().trim())) {
+                        task_spinner.setEnabled(true);
+                    } else {
+                        task_spinner.setEnabled(false);
+                        task_spinner.setSelection(0);
+                    }
                 }
                 @Override
                 public void afterTextChanged(Editable s) {
-                    if (task_spinner.getSelectedItemId() != 0) {
-                        task_button.setEnabled(true);
-                        task_button.setImageResource(R.drawable.btn_check_on);
-                    }
                 }
             });
 
+            task_spinner.setEnabled(false);
             ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,
                     android.R.layout.simple_spinner_dropdown_item, task_values);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -56,22 +59,23 @@ public class MainActivity extends Activity {
             task_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (!TextUtils.isEmpty(task_text.getText().toString())) {
-                        task_button.setEnabled(true);
-                        task_button.setImageResource(R.drawable.btn_check_on);
-                    }
+                    task_button.setEnabled(true);
+                    task_button.setImageResource(R.drawable.btn_check_on);
                 }
+
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                   task_button.setEnabled(false);
+                    task_button.setEnabled(false);
                     task_button.setImageResource(R.drawable.btn_check_off_disable);
                 }
             });
+            task_button.setEnabled(false);
             task_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // TODO: Засчитать баллы
                     task_text.clearFocus();
+                    task_spinner.setEnabled(false);
                     task_spinner.setSelection(0);
                     task_button.setEnabled(false);
                     task_button.setImageResource(R.drawable.btn_check_off_disable);
