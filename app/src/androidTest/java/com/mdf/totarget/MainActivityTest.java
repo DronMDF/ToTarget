@@ -5,6 +5,7 @@ import android.test.suitebuilder.annotation.MediumTest;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import static android.test.TouchUtils.*;
@@ -69,10 +70,19 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
         final TextView task_text = (TextView) task.findViewById(R.id.name);
         setTaskText(task_text, "Test");
+        final Spinner task_spinner = (Spinner) task.findViewById(R.id.spinner);
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                task_spinner.setSelection(5);
+            }
+        });
+        getInstrumentation().waitForIdleSync();
 
         View task_button = tasks.findViewById(R.id.done);
         // When
         clickView(this, task_button);
+        getInstrumentation().waitForIdleSync();
         // Then
         assertFalse(task_button.isEnabled());
         assertTrue(TextUtils.isEmpty(task_text.getText().toString()));

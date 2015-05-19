@@ -70,6 +70,7 @@ public class MainActivity extends Activity {
                 }
             });
             task_button.setEnabled(false);
+            task_button.setImageResource(R.drawable.btn_check_off_disable);
             task_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
