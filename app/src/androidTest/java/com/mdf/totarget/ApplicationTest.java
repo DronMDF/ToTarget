@@ -1,10 +1,7 @@
 package com.mdf.totarget;
 
 import android.app.Application;
-import android.content.Intent;
 import android.test.ApplicationTestCase;
-import android.test.suitebuilder.annotation.MediumTest;
-import android.widget.LinearLayout;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
