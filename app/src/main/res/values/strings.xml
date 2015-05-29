@@ -3,4 +3,10 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="status">Points:</string>
+    <string name="new_task">New task</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_task_title">New task</string>
+    <string name="new_bonus">New bonus</string>
 </resources>
